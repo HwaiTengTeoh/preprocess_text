@@ -1,6 +1,6 @@
 from preprocess_text import utils
 
-__version__ = '0.0.2'
+__version__ = '0.0.4'
 
 def get_wordcounts(x):
     return utils._get_wordcounts(x)
@@ -13,6 +13,9 @@ def get_avg_wordlength(x):
 
 def get_stopwords_counts(x):
     return utils._get_stopwords_counts(x)
+
+def get_punc_counts(x):
+    return utils._get_punc_counts(x)
 
 def get_hashtag_counts(x):
     return utils._get_hashtag_counts(x)
@@ -43,6 +46,9 @@ def remove_urls(x):
 
 def remove_special_chars(x):
     return utils._remove_special_chars(x)
+
+def remove_elongated_chars(x):
+    return utils._remove_elongated_chars(x)
 
 def remove_html_tags(x):
     return utils._remove_html_tags(x)

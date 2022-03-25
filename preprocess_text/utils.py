@@ -28,6 +28,11 @@ def _get_avg_wordlength(x):
 def _get_stopwords_counts(x):
     return len([t for t in x.split() if t in stopwords])
 
+def _get_punc_counts(x):
+    punc = re.findall(r'[^\w ]+', x)
+    counts = len(punc)
+    return counts
+
 def _get_hashtag_counts(x):
     return len([t for t in x.split() if t.startwith('#')])
 
@@ -138,7 +143,6 @@ def _cont_exp(x):
 def _get_emails(x):
     emails = re.findall(r'([a-z0-9+._-]+@[a-z0-9+._-]+\.[a-z0-9+_-]+\b)', x)
     counts = len(emails)
-
     return counts, emails
 
 def _remove_emails(x):
@@ -152,10 +156,16 @@ def _get_urls(x):
 def _remove_urls(x):
     return re.sub(r'(http|https|ftp|ssh)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', '' , x)
 
+def _remove_mention(x):
+    return re.sub(r'(@)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])', '', x)
+
 def _remove_special_chars(x):
     x = re.sub(r'[^\w ]+', "", x)
     x = ' '.join(x.split())
     return x
+
+def _remove_elongated_chars(x):
+    return re.sub(r'(.)\1{2,}',r'\1',x) #any characters, numbers, symbols
 
 def _remove_html_tags(x):
     return BeautifulSoup(x, 'lxml').get_text().strip()

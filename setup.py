@@ -5,7 +5,7 @@ with open('README.md','r') as file:
 
 setuptools.setup(
     name = 'preprocess_text', #should be unique globally to avoid package name conflict
-    version = '0.0.2',
+    version = '0.0.4',
     author = 'Hwai Teng Teoh',
     author_email = 'teoh0821@gmail.com',
     description = 'This is text preprocessing package',
