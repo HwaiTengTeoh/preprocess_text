@@ -154,10 +154,10 @@ def _get_urls(x):
     return counts, urls
 
 def _remove_urls(x):
-    return re.sub(r'(http|https|ftp|ssh)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', '' , x)
+    return re.sub(r'(http|https|ftp|ssh)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', 'URL' , x)
 
 def _remove_mention(x):
-    return re.sub(r'(@)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])', '', x)
+    return re.sub(r'(@)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])', 'ALT_USER', x)
 
 def _remove_special_chars(x):
     x = re.sub(r'[^\w ]+', "", x)
@@ -173,6 +173,9 @@ def _remove_html_tags(x):
 def _remove_accented_chars(x):
     x = unicodedata.normalize('NFKD', x).encode('ascii', 'ignore').decode('utf-8', 'ignore')
     return x
+
+def _remove_numeric(x):
+    return ''.join([i for i in x if not i.isdigit()])
 
 def _remove_stopwords(x):
     return ' '.join([t for t in x.split() if t not in stopwords])
