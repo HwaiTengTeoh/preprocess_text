@@ -1,6 +1,6 @@
 from preprocess_text import utils
 
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 
 def get_wordcounts(x):
     return utils._get_wordcounts(x)
@@ -43,6 +43,9 @@ def get_urls(x):
 
 def remove_urls(x):
     return utils._remove_urls(x)
+
+def remove_mention(x):
+    return utils._remove_mention(x)
 
 def remove_special_chars(x):
     return utils._remove_special_chars(x)
