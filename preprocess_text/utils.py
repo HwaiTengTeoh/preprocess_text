@@ -34,7 +34,7 @@ def _get_punc_counts(x):
     return counts
 
 def _get_hashtag_counts(x):
-    return len([t for t in x.split() if t.startwith('#')])
+    return len([t for t in x.split() if t.startswith('#')])
 
 def _get_mention_counts(x):
     return len([t for t in x.split() if t.startswith('@')])
