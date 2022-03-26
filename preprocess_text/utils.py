@@ -31,57 +31,57 @@ from emot.emo_unicode import UNICODE_EMOJI, EMOTICONS_EMO
 #############
 
 # Note: Putting underscore to signify that these are private and internal methods
-# Function to count word
+# count word
 def _get_wordcounts(x):
     length = len(str(x).split())
     return length
 
 
-# Function to count character
+# Count character
 def _get_char_counts(x):
     s = x.split()
     x = ''.join(s)
     return len(x)
 
 
-# Function to calculate average wordlength
+# Calculate average wordlength
 def _get_avg_wordlength(x):
     return _get_char_counts(x)/_get_wordcounts(x)
 
 
-# Function to count stopword
+# Count stopword
 def _get_stopwords_counts(x):
     return len([t for t in x.split() if t in stopwords])
 
 
-# Function to count punctuation
+# Count punctuation
 def _get_punc_counts(x):
     punc = re.findall(r'[^\w ]+', x)
     counts = len(punc)
     return counts
 
 
-# Function to count hashtag
+# Count hashtag
 def _get_hashtag_counts(x):
     return len([t for t in x.split() if t.startswith('#')])
 
 
-# Function to count mentions
+# Count mentions
 def _get_mention_counts(x):
     return len([t for t in x.split() if t.startswith('@')])
 
 
-# Function to count digit/numeric
+# Count digit/numeric
 def _get_digit_counts(x):
     return len([t for t in x.split() if t.isdigit()])
 
 
-# Function to count uppercase
+# Count uppercase
 def _get_uppercase_counts(x):
     return len([t for t in x.split() if t.isupper()])
 
 
-# Function to expand all contractions
+# Expand all contractions
 def _cont_exp(x):
     contractions = { 
     "ain't": "am not",
@@ -178,69 +178,69 @@ def _cont_exp(x):
         return x
 
 
-# Function for counting occurence of emails
+# Count occurence of emails
 def _get_emails(x):
     emails = re.findall(r'([a-z0-9+._-]+@[a-z0-9+._-]+\.[a-z0-9+_-]+\b)', x)
     counts = len(emails)
     return counts, emails
 
 
-# Function for removing emails
+# Remove emails
 def _remove_emails(x):
     return re.sub(r'([a-z0-9+._-]+@[a-z0-9+._-]+\.[a-z0-9+_-]+)',"", x)
 
 
-# Function for counting occurence of weblink
+# Count occurence of weblink
 def _get_urls(x):
     urls = re.findall(r'(http|https|ftp|ssh)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', x)
     counts = len(urls)
     return counts, urls
 
 
-# Function for removing weblink
+# Remove weblink
 def _remove_urls(x):
     return re.sub(r'(http|https|ftp|ssh)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', 'URL' , x)
 
 
-# Function for removing mentions
+# Remove mentions
 def _remove_mention(x):
     return re.sub(r'(@)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])', 'ALT_USER', x)
 
 
-# Function for removing special characters/punctuation
+# Remove special characters/punctuation
 def _remove_special_chars(x):
     x = re.sub(r'[^\w ]+', "", x)
     x = ' '.join(x.split())
     return x
 
 
-# Function for removing elongated chars and reduction
+# Remove elongated chars and reduction
 def _remove_elongated_chars(x):
     return re.sub(r'(.)\1{2,}',r'\1',x) #any characters, numbers, symbols
 
 
-# Function for removing HTML elements
+# Remove HTML elements
 def _remove_html_tags(x):
     return BeautifulSoup(x, 'lxml').get_text().strip()
 
 
-# Function for removing accented character
+# Remove accented character
 def _remove_accented_chars(x):
     x = unicodedata.normalize('NFKD', x).encode('ascii', 'ignore').decode('utf-8', 'ignore')
     return x
 
 
-# Function for removing numeric
+# Remove numeric
 def _remove_numeric(x):
     return ''.join([i for i in x if not i.isdigit()])
 
 
-# Function for removing stop word
+# Remove stop word
 def _remove_stopwords(x):
     return ' '.join([t for t in x.split() if t not in stopwords])
 
 
-# Function for making the word to base form
+# Convert the word to base form
 def _make_base(x):
     x = str(x)
     x_list = []
@@ -263,27 +263,27 @@ def _get_value_counts(df,col):
     return freq
 
 
-# Function for removing common word
+# Remove common word
 def _remove_common_words(x, freq, n=20):
     fn = freq[:n]
     x = ' '.join([t for t in x.split() if t not in fn])
     return x
 
 
-# Function for removing rare word
+# Remove rare word
 def _remove_rarewords(x, freq, n=20):
     fn = freq.tail(20)
     x=' '.join([t for t in x.split() if t not in fn])
     return x
 
 
-# Function for spelling correction
+# Spelling correction
 def _spelling_correction(x):
     x = TextBlob(x).correct()
     return x
 
 
-# Function for counting emoticons 
+# Count emoticons 
 pattern_emoticon = u'|'.join(k.replace('|','\\|') for k in EMOTICONS_EMO)
 pattern_emoticon = pattern_emoticon.replace('\\','\\\\')
 pattern_emoticon = pattern_emoticon.replace('(','\\(')
@@ -302,14 +302,14 @@ def _get_emoticon_counts(x):
     return len(emoticon)
 
 
-# Function for converting emoticons into word
+# Convert emoticons into word
 def _convert_emoticons(x):
     for emot in EMOTICONS_EMO:
         x = x.replace(emot, "_".join(EMOTICONS_EMO[emot].replace(",","").replace(":","").split()))
     return x
 
 
-# Function for counting emoji
+# Count emoji
 pattern_emoji = u'|'.join(k.replace('|','\\|') for k in UNICODE_EMOJI)
 pattern_emoji = pattern_emoji.replace('\\','\\\\')
 pattern_emoji = pattern_emoji.replace('(','\\(')
@@ -329,8 +329,34 @@ def _get_emoji_counts(x):
     return len(emoji)
 
 
-# Function for converting emoji into word
+# Convert emoji into word
 def _convert_emojis(x):
     for emot in UNICODE_EMOJI:
         x = x.replace(emot, "_".join(UNICODE_EMOJI[emot].replace(",","").replace(":","").split()))
     return x
+
+
+# Lemmatize using spacy
+lemmatizer = nlp.get_pipe("lemmatizer")
+def _get_lemmatize_words(x):
+    return " ".join([token.lemma_ for token in nlp(x)])
+
+
+# Get NER using spacy
+def _get_ner(x):
+    return " ".join([ent.label_ for ent in nlp(x).ents])
+
+
+# Count NER using spacy
+def _get_ner_counts(x,pos_tag=None):
+    return len([t for t in x.split() if t == pos_tag])
+
+
+# Get POS tag using spacy
+def _get_pos_tag(x):
+    return " ".join([token.pos_ for token in nlp(x)])
+
+
+# Count POS tag using spacy
+def _get_pos_tag_counts(x,pos_tag=None):
+    return len([t for t in x.split() if t == pos_tag])

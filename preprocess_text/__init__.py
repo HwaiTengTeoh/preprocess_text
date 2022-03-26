@@ -1,6 +1,6 @@
 from preprocess_text import utils
 
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 
 def get_wordcounts(x):
     return utils._get_wordcounts(x)
@@ -91,3 +91,18 @@ def get_emoji_counts(x):
 
 def convert_emojis(x):
     return utils._convert_emojis(x)
+
+def get_lemmatize_words(x):
+    return utils._get_lemmatize_words(x)
+
+def get_ner(x):
+    return utils._get_ner(x)
+
+def get_ner_counts(x):
+    return utils._get_ner_counts(x)
+
+def get_pos_tag(x):
+    return utils._get_pos_tag(x)
+
+def get_pos_tag_counts(x):
+    return utils._get_pos_tag_counts(x)
