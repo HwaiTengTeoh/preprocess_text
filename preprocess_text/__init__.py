@@ -1,6 +1,6 @@
 from preprocess_text import utils
 
-__version__ = '0.0.7'
+__version__ = '1.0.0'
 
 def get_wordcounts(x):
     return utils._get_wordcounts(x)
@@ -79,3 +79,15 @@ def remove_rarewords(x, freq, n=20):
 
 def spelling_correction(x):
     return utils._spelling_correction(x)
+
+def get_emoticon_counts(x):
+    return utils._get_emoticon_counts(x)
+
+def convert_emoticons(x):
+    return utils._convert_emoticons(x)
+
+def get_emoji_counts(x):
+    return utils._get_emoji_counts(x)
+
+def convert_emojis(x):
+    return utils._convert_emojis(x)
