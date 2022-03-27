@@ -98,11 +98,11 @@ def get_lemmatize_words(x):
 def get_ner(x):
     return utils._get_ner(x)
 
-def get_ner_counts(x):
-    return utils._get_ner_counts(x)
+def get_ner_counts(x,pos_tag=None):
+    return utils._get_ner_counts(x,pos_tag=None)
 
 def get_pos_tag(x):
     return utils._get_pos_tag(x)
 
-def get_pos_tag_counts(x):
-    return utils._get_pos_tag_counts(x)
+def get_pos_tag_counts(x,pos_tag=None):
+    return utils._get_pos_tag_counts(x,pos_tag=None)
