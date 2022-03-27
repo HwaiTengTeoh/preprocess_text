@@ -21,6 +21,7 @@ nlp = spacy.load('en_core_web_sm')
 
 # Text Cleaning - Emoji & Emoticons
 import re
+import string
 import pickle
 from emot.emo_unicode import UNICODE_EMOJI, EMOTICONS_EMO
 
@@ -208,11 +209,11 @@ def _remove_mention(x):
 
 
 # Remove special characters/punctuation
+punct = string.punctuation
 def _remove_special_chars(x):
-    x = re.sub(r'[^\w ]+', "", x)
-    x = ' '.join(x.split())
+    for p in punct:
+        x = x.replace(p, " ")
     return x
-
 
 # Remove elongated chars and reduction
 def _remove_elongated_chars(x):
