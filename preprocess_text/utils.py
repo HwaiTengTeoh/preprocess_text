@@ -315,8 +315,8 @@ def _get_emoticon_counts(x):
 
 # Convert emoticons into word
 def _convert_emoticons(x):
-    for emot in EMOTICONS_EMO:
-        x = x.replace(emot, "_".join(EMOTICONS_EMO[emot].replace(",","").replace(":","").split()))
+    for emot in EMOTICONS_EMO_ALL:
+        x = x.replace(emot, "_".join(EMOTICONS_EMO_ALL[emot].replace(",","").replace(":","").split()))
     return x
 
 
@@ -371,3 +371,22 @@ def _get_pos_tag(x):
 # Count POS tag using spacy
 def _get_pos_tag_counts(x,pos_tag=None):
     return len([t for t in x.split() if t == pos_tag])
+
+
+# Resolve all Internet Slangs
+with open('SLANG_ALL.pkl', 'rb') as fp:
+    SLANG_ALL = pickle.load(fp)
+    
+def _slang_resolution(x):
+    clean_text = []
+    for text in x.split():
+        if text in list(SLANG_ALL.keys()):
+            for key in SLANG_ALL:
+                value = SLANG_ALL[key]
+                if text == key:
+                    clean_text.append(text.replace(key,value))
+                else:
+                    continue
+        else:
+            clean_text.append(text)
+    return " ".join(clean_text)
