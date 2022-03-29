@@ -374,15 +374,15 @@ def _get_pos_tag_counts(x,pos_tag=None):
 
 
 # Resolve all Internet Slangs
-with open('SLANG_ALL.pkl', 'rb') as fp:
-    SLANG_ALL = pickle.load(fp)
+with open('SLANG_TOP.pkl', 'rb') as fp:
+    SLANG_TOP = pickle.load(fp)
     
 def _slang_resolution(x):
     clean_text = []
     for text in x.split():
-        if text in list(SLANG_ALL.keys()):
-            for key in SLANG_ALL:
-                value = SLANG_ALL[key]
+        if text in list(SLANG_TOP.keys()):
+            for key in SLANG_TOP:
+                value = SLANG_TOP[key]
                 if text == key:
                     clean_text.append(text.replace(key,value))
                 else:
