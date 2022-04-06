@@ -233,7 +233,7 @@ def _remove_accented_chars(x):
 
 # Remove numeric
 def _remove_numeric(x):
-    return ' '.join([i for i in x if not i.isdigit()])
+    return ''.join([i for i in x if not i.isdigit()])
 
 
 # Remove stop word
