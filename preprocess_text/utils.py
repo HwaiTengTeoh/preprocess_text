@@ -285,12 +285,11 @@ def _spelling_correction(x):
 
 
 # Count emoticons 
-with open('EMOTICONS_EMO_ALL.pkl', 'rb') as fp:
-    EMOTICONS_EMO_ALL = pickle.load(fp)
+# with open('EMOTICONS_EMO_ALL.pkl', 'rb') as fp:
+#     EMOTICONS_EMO_ALL = pickle.load(fp)
 
-import re
-##```python
-pattern_emoticon = u'|'.join(k.replace('|','\\|') for k in EMOTICONS_EMO_ALL)
+
+pattern_emoticon = u'|'.join(k.replace('|','\\|') for k in EMOTICONS_EMO)
 pattern_emoticon = pattern_emoticon.replace('\\','\\\\')
 pattern_emoticon = pattern_emoticon.replace('(','\\(')
 pattern_emoticon = pattern_emoticon.replace(')','\\)')
@@ -315,8 +314,8 @@ def _get_emoticon_counts(x):
 
 # Convert emoticons into word
 def _convert_emoticons(x):
-    for emot in EMOTICONS_EMO_ALL:
-        x = x.replace(emot, "_".join(EMOTICONS_EMO_ALL[emot].replace(",","").replace(":","").split()))
+    for emot in EMOTICONS_EMO:
+        x = x.replace(emot, "_".join(EMOTICONS_EMO[emot].replace(",","").replace(":","").split()))
     return x
 
 
