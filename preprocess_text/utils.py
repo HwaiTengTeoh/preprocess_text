@@ -183,7 +183,7 @@ def _cont_exp(x):
 def _get_emails(x):
     emails = re.findall(r'([a-z0-9+._-]+@[a-z0-9+._-]+\.[a-z0-9+_-]+\b)', x)
     counts = len(emails)
-    return counts, emails
+    return counts
 
 
 # Remove emails
@@ -195,17 +195,17 @@ def _remove_emails(x):
 def _get_urls(x):
     urls = re.findall(r'(http|https|ftp|ssh)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', x)
     counts = len(urls)
-    return counts, urls
+    return counts
 
 
 # Remove weblink
 def _remove_urls(x):
-    return re.sub(r'(http|https|ftp|ssh)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', 'URL' , x)
+    return re.sub(r'(http|https|ftp|ssh)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?', '' , x)
 
 
 # Remove mentions
 def _remove_mention(x):
-    return re.sub(r'(@)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])', 'ALT_USER', x)
+    return re.sub(r'(@)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])', '', x)
 
 
 # Remove special characters/punctuation
@@ -233,7 +233,7 @@ def _remove_accented_chars(x):
 
 # Remove numeric
 def _remove_numeric(x):
-    return ''.join([i for i in x if not i.isdigit()])
+    return ' '.join([i for i in x if not i.isdigit()])
 
 
 # Remove stop word
