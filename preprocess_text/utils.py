@@ -237,8 +237,27 @@ def _remove_numeric(x):
 
 
 # Remove stop word
-def _remove_stopwords(x):
-    return ' '.join([t for t in x.split() if t not in stopwords])
+# def _remove_stopwords(x):
+#     return ' '.join([t for t in x.split() if t not in stopwords])
+
+def _remove_stopwords(x, keep_pronoun=True):
+    x = str(x)
+    x_list = []
+    doc = nlp(x)
+    
+    for token in doc:
+        lemma = token.pos_
+        text = token.text
+        
+        if token.is_stop:
+            if keep_pronoun & (lemma == 'PRON' or lemma == 'PROPN'):
+                text = token.text
+            else:
+                text = ''
+        else:
+            text = token.text
+        x_list.append(text.strip())
+    return ' '.join(x_list)
 
 
 # Convert the word to base form
