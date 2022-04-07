@@ -250,7 +250,7 @@ def _remove_stopwords(x, rm_pronoun=True):
         text = token.text
         
         if token.is_stop:
-            if rm_pronoun & (lemma == 'PRON' or lemma == 'PROPN'):
+            if rm_pronoun == False & (lemma == 'PRON' or lemma == 'PROPN'):
                 text = token.text
             else:
                 text = ''
