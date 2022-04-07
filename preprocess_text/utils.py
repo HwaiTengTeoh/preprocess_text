@@ -240,7 +240,7 @@ def _remove_numeric(x):
 # def _remove_stopwords(x):
 #     return ' '.join([t for t in x.split() if t not in stopwords])
 
-def _remove_stopwords(x, rm_pronoun=True):
+def _remove_stopwords(x, keep_pronoun=True):
     x = str(x)
     x_list = []
     doc = nlp(x)
@@ -250,7 +250,7 @@ def _remove_stopwords(x, rm_pronoun=True):
         text = token.text
         
         if token.is_stop:
-            if rm_pronoun == False & (lemma == 'PRON' or lemma == 'PROPN'):
+            if keep_pronoun & (lemma == 'PRON' or lemma == 'PROPN'):
                 text = token.text
             else:
                 text = ''

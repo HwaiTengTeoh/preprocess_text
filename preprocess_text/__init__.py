@@ -1,6 +1,6 @@
 from preprocess_text import utils
 
-__version__ = '1.5.7'
+__version__ = '1.5.8'
 
 def get_wordcounts(x):
     return utils._get_wordcounts(x)
@@ -62,8 +62,8 @@ def remove_accented_chars(x):
 def remove_numeric(x):
     return utils._remove_numeric(x)
 
-def remove_stopwords(x,rm_pronoun):
-    return utils._remove_stopwords(x,rm_pronoun)
+def remove_stopwords(x,keep_pronoun):
+    return utils._remove_stopwords(x,keep_pronoun)
 
 def make_base(x):
     return utils._make_base(x)
