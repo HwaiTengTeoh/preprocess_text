@@ -217,8 +217,10 @@ def _remove_special_chars(x):
 
 # Remove elongated chars and reduction
 def _remove_elongated_chars(x):
-    return re.sub(r'(.)\1{2,}',r'\1',x) #any characters, numbers, symbols
-
+    temp = re.sub(r'(.)\1{2,}',r'\1',x)   #any characters, numbers, symbols
+    temp2 = re.sub(r'(..)\1{2,}', r'\1', temp)  
+    temp3 = re.sub(r'(...)\1{2,}', r'\1', temp2)  
+    return temp3
 
 # Remove HTML elements
 def _remove_html_tags(x):
