@@ -249,11 +249,10 @@ def _remove_stopwords(x, keep_pronoun=True):
     doc = nlp(x)
     
     for token in doc:
-        lemma = token.pos_
         text = token.text
         
         if token.is_stop:
-            if keep_pronoun & (lemma == 'PRON' or lemma == 'PROPN'):
+            if keep_pronoun & (token.pos_ == 'PRON' or token.pos_ == 'PROPN'):
                 text = token.text
             else:
                 text = ''
@@ -271,7 +270,8 @@ def _make_base(x):
     
     for token in doc:
         lemma = token.lemma_
-        if lemma == '-PRON-' or lemma == 'be':
+        
+        if token.pos_ == 'PRON' or token.lemma_ == 'be':
             lemma = token.text
 
         x_list.append(lemma)
