@@ -219,8 +219,9 @@ def _remove_special_chars(x):
 def _remove_elongated_chars(x):
     temp = re.sub(r'(.)\1{2,}',r'\1',x)   #any characters, numbers, symbols
     temp2 = re.sub(r'(..)\1{2,}', r'\1', temp)  
-    temp3 = re.sub(r'(...)\1{2,}', r'\1', temp2)  
-    return temp3
+    temp3 = re.sub(r'(...)\1{2,}', r'\1', temp2)
+    temp4 = re.sub(r'(....)\1{2,}', r'\1', temp3)  
+    return temp4
 
 # Remove HTML elements
 def _remove_html_tags(x):
@@ -309,6 +310,20 @@ def _spelling_correction(x):
 # with open('EMOTICONS_EMO_ALL.pkl', 'rb') as fp:
 #     EMOTICONS_EMO_ALL = pickle.load(fp)
 
+add_emoticon = {'-.-': 'shame',
+      '-_-': 'squiting',
+      '^.^': 'happy face',
+      ':0': 'surprise',
+      '^-^': 'happy face',
+      ':33': 'happy face smiley',
+      '^__^': 'happy face',
+      '-____-': 'shame',
+      'o_o': 'confused',
+      'O_O': 'confused',
+      'x3': 'Cute face'
+      }
+
+EMOTICONS_EMO.update(add_emoticon)
 
 pattern_emoticon = u'|'.join(k.replace('|','\\|') for k in EMOTICONS_EMO)
 pattern_emoticon = pattern_emoticon.replace('\\','\\\\')
@@ -409,3 +424,26 @@ def _slang_resolution(x):
         else:
             clean_text.append(text)
     return " ".join(clean_text)
+
+
+# Remove space between single characters
+def _remove_space_single_chars(x):
+    
+    '''
+    ----------------
+     Decipher regex
+    ----------------
+    (?i)          # set flags for this block (case-insensitive)
+    (?<=          # look behind to see if there is:
+      \b          #   the boundary between a word char (\w) and not a word char
+      [a-z]       #   any character of: 'a' to 'z'
+    )             # end of look-behind
+                  # ' '
+    (?=           # look ahead to see if there is:
+      [a-z]       #   any character of: 'a' to 'z'
+      \b          #   the boundary between a word char (\w) and not a word char
+    )             # end of look-ahead
+    
+    '''
+    temp = re.sub(r'(?i)(?<=\b[a-z]) (?=[a-z]\b)', '', x) 
+    return temp

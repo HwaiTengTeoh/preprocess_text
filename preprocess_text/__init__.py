@@ -1,6 +1,6 @@
 from preprocess_text import utils
 
-__version__ = '1.6.0'
+__version__ = '1.6.2'
 
 def get_wordcounts(x):
     return utils._get_wordcounts(x)
@@ -109,3 +109,6 @@ def get_pos_tag_counts(x,pos_tag=None):
 
 def slang_resolution(x):
     return utils._slang_resolution(x)
+
+def remove_space_single_chars(x):
+    return utils._remove_space_single_chars(x)
