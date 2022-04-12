@@ -1,6 +1,6 @@
 from preprocess_text import utils
 
-__version__ = '1.6.3'
+__version__ = '1.6.4'
 
 def get_wordcounts(x):
     return utils._get_wordcounts(x)
@@ -98,14 +98,14 @@ def get_lemmatize_words(x):
 def get_ner(x):
     return utils._get_ner(x)
 
-def get_ner_counts(x,pos_tag=None):
-    return utils._get_ner_counts(x,pos_tag=None)
+def get_ner_counts(x,pos_tag):
+    return utils._get_ner_counts(x,pos_tag)
 
 def get_pos_tag(x):
     return utils._get_pos_tag(x)
 
-def get_pos_tag_counts(x,pos_tag=None):
-    return utils._get_pos_tag_counts(x,pos_tag=None)
+def get_pos_tag_counts(x,pos_tag):
+    return utils._get_pos_tag_counts(x,pos_tag)
 
 def slang_resolution(x):
     return utils._slang_resolution(x)

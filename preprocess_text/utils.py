@@ -393,7 +393,7 @@ def _get_ner(x):
 
 
 # Count NER using spacy
-def _get_ner_counts(x,pos_tag=None):
+def _get_ner_counts(x,pos_tag):
     return len([t for t in x.split() if t == pos_tag])
 
 
@@ -403,7 +403,7 @@ def _get_pos_tag(x):
 
 
 # Count POS tag using spacy
-def _get_pos_tag_counts(x,pos_tag=None):
+def _get_pos_tag_counts(x,pos_tag):
     return len([t for t in x.split() if t == pos_tag])
 
 
