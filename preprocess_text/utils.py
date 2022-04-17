@@ -354,6 +354,13 @@ def _convert_emoticons(x):
     return x
 
 
+# Remove emoticons
+def _remove_emoticons(x):
+    for emot in EMOTICONS_EMO:
+        x = x.replace(emot, " ")
+    return x
+
+
 # Count emoji
 pattern_emoji = u'|'.join(k.replace('|','\\|') for k in UNICODE_EMOJI)
 pattern_emoji = pattern_emoji.replace('\\','\\\\')
@@ -378,6 +385,13 @@ def _get_emoji_counts(x):
 def _convert_emojis(x):
     for emot in UNICODE_EMOJI:
         x = x.replace(emot, "_".join(UNICODE_EMOJI[emot].replace(",","").replace(":","").split()))
+    return x
+
+
+# Remove emoji 
+def _remove_emojis(x):
+    for emot in UNICODE_EMOJI:
+        x = x.replace(emot, " ")
     return x
 
 
