@@ -347,6 +347,12 @@ def _get_emoticon_counts(x):
     return len(emoticon)
 
 
+def _extract_emoticon(x):
+    emoticon_pattern = re.compile(u'(' + pattern_emoticon + u')')
+    emoticon = [i for i in emoticon_pattern.findall(x) if i]
+    return emoticon
+
+
 # Convert emoticons into word
 def _convert_emoticons(x):
     for emot in EMOTICONS_EMO:
@@ -380,6 +386,10 @@ def _get_emoji_counts(x):
     emoji = [i for i in emoji_pattern.findall(x) if i]
     return len(emoji)
 
+def _extract_emoji(x):
+    emoji_pattern = re.compile(u'(' + pattern_emoji + u')')
+    emoji = [i for i in emoji_pattern.findall(x) if i]
+    return emoji
 
 # Convert emoji into word
 def _convert_emojis(x):
