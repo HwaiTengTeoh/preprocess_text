@@ -1,7 +1,7 @@
-# TEXT PREPROCESSING PACKAGE
+# Text Preprocessing Package
 This package was developed for the ease of the procedures in processing the text data that entails:
 
-
+## Functions
 
 
 ## Install
