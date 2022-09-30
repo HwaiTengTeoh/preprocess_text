@@ -9,13 +9,13 @@ This package was developed for the ease of the procedures in processing the text
 - emot.emo_unicode
 - wget
 
-## Install
+## Install package
 `pip install git+ssh://git@github.com/HwaiTengTeoh/preprocess_text.git`
 
 ## Update package
 `pip install --upgrade git+ssh://git@github.com/HwaiTengTeoh/preprocess_text.git`
 
-## Uninstall
+## Uninstall package
 `pip uninstall preprocess_text`
 
 ## Examples
