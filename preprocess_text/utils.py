@@ -312,15 +312,16 @@ def _spelling_correction(x):
 
 add_emoticon = {'-.-': 'shame',
       '-_-': 'squiting',
-      '^.^': 'happy face',
+      '^.^': 'happy',
       ':0': 'surprise',
-      '^-^': 'happy face',
+      '^-^': 'happy',
       ':33': 'happy face smiley',
-      '^__^': 'happy face',
+      '^__^': 'happy',
       '-____-': 'shame',
       'o_o': 'confused',
       'O_O': 'confused',
-      'x3': 'Cute face'
+      'x3': 'Cute',
+      'T T': 'Cry'
       }
 
 EMOTICONS_EMO.update(add_emoticon)
@@ -432,6 +433,10 @@ def _get_pos_tag_counts(x,pos_tag):
 
 
 # Resolve all Internet Slangs
+import wget
+URL = "https://github.com/HwaiTengTeoh/preprocess_text/raw/master/SLANG_TOP.pkl"
+download_file = wget.download(URL, "SLANG_TOP.pkl")
+
 with open('SLANG_TOP.pkl', 'rb') as fp:
     SLANG_TOP = pickle.load(fp)
     
