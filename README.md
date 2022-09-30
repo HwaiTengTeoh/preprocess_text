@@ -14,3 +14,7 @@ This package was developed for the ease of the procedures in processing the text
 
 ## Uninstall
 `pip uninstall preprocess_text`
+
+## Examples
+Please refer [here](https://github.com/HwaiTengTeoh/preprocess_text/blob/master/Demonstration%20-%20Text%20Cleaning%20and%20Preprocessing.ipynb) for the demonstration of code.
+
